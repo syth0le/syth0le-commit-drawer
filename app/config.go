@@ -1,5 +1,7 @@
 package main
 
+var globalAccumulator int = 0
+
 type ContributionTable struct {
 	days  int // 7
 	weeks int // 52 - 54

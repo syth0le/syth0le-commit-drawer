@@ -7,10 +7,10 @@ func runGitAdd() {
 	fmt.Println(command)
 }
 
-func runGitCommit() {
+func runGitCommit(number int) {
 	dateTime := getDateTimeCommit("s")
-	message := getRandomCommitMessage(1)
-	command := "git commit -m " + message + dateTime
+	message := getRandomCommitMessage(number)
+	command := "git commit -m " + message + " --date=" + dateTime
 	fmt.Println(command)
 }
 
@@ -20,8 +20,11 @@ func runGitPush() {
 }
 
 func runCommands() {
-	writeChangesToFile(2)
-	runGitAdd()
-	runGitCommit()
-	runGitPush()
+	for globalAccumulator < 5 {
+		number := getNumber()
+		writeChangesToFile(number)
+		runGitAdd()
+		runGitCommit(number)
+		runGitPush()
+	}
 }

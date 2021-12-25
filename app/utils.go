@@ -5,13 +5,17 @@ import (
 	"strconv"
 )
 
+func getNumber() int {
+	globalAccumulator++
+	return globalAccumulator
+}
+
 func getDateTimeCommit(date string) string {
 	return date
 }
 
 func getRandomCommitMessage(number int) string {
-	// randomize function
-	message := "title message"
+	message := "title message #" + strconv.Itoa(number)
 	return message
 }
 
