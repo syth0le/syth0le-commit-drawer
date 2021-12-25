@@ -35,6 +35,7 @@ func writeChangesToFile(number int) bool {
 		isWrited = true
 		panic(err)
 	}
+	file.Close()
 
 	return isWrited
 }

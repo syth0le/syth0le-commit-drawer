@@ -1,30 +1,56 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os/exec"
+)
+
+func runGitStatus() {
+	command := "git status"
+	execute(command)
+	writeToLogFile(command)
+	//fmt.Println(command)
+}
 
 func runGitAdd() {
 	command := "git add ."
-	fmt.Println(command)
+	writeToLogFile(command)
+	//fmt.Println(command)
 }
 
 func runGitCommit(number int) {
 	dateTime := getDateTimeCommit("s")
 	message := getRandomCommitMessage(number)
 	command := "git commit -m " + message + " --date=" + dateTime
-	fmt.Println(command)
+	writeToLogFile(command)
+	//fmt.Println(command)
 }
 
 func runGitPush() {
 	command := "git push"
-	fmt.Println(command)
+	writeToLogFile(command)
+	//fmt.Println(command)
+}
+
+func execute(command string) {
+	out, err := exec.Command("cmd", "/C", command).Output()
+	if err != nil {
+		fmt.Printf("%s", err)
+	}
+
+	fmt.Println("Command Successfully Executed")
+	output := string(out[:])
+	fmt.Println(output)
 }
 
 func runCommands() {
-	for globalAccumulator < 5 {
+	for globalAccumulator < 10 {
 		number := getNumber()
 		writeChangesToFile(number)
+		runGitStatus()
 		runGitAdd()
 		runGitCommit(number)
 		runGitPush()
 	}
+	cleanLogFile(false)
 }
