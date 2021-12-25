@@ -7,15 +7,14 @@ import (
 
 func runGitStatus() {
 	command := "git status"
-	execute(command)
+	output := execute(command)
 	writeToLogFile(command)
-	//fmt.Println(command)
+	writeToLogFile(output)
 }
 
 func runGitAdd() {
 	command := "git add ."
 	writeToLogFile(command)
-	//fmt.Println(command)
 }
 
 func runGitCommit(number int) {
@@ -23,16 +22,14 @@ func runGitCommit(number int) {
 	message := getRandomCommitMessage(number)
 	command := "git commit -m " + message + " --date=" + dateTime
 	writeToLogFile(command)
-	//fmt.Println(command)
 }
 
 func runGitPush() {
 	command := "git push"
 	writeToLogFile(command)
-	//fmt.Println(command)
 }
 
-func execute(command string) {
+func execute(command string) string {
 	out, err := exec.Command("cmd", "/C", command).Output()
 	if err != nil {
 		fmt.Printf("%s", err)
@@ -40,7 +37,7 @@ func execute(command string) {
 
 	fmt.Println("Command Successfully Executed")
 	output := string(out[:])
-	fmt.Println(output)
+	return output
 }
 
 func runCommands() {
