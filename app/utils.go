@@ -3,6 +3,7 @@ package main
 import (
 	"os"
 	"strconv"
+	"time"
 )
 
 func getNumber() int {
@@ -11,7 +12,9 @@ func getNumber() int {
 }
 
 func getDateTimeCommit(date string) string {
-	return date
+	dateTime := time.Now()
+	then := dateTime.Add(time.Duration(-24*globalAccumulator) * time.Hour)
+	return then.Format("2006-01-02T15:04:05-0700")
 }
 
 func getRandomCommitMessage(number int) string {
