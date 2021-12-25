@@ -2,16 +2,6 @@ package main
 
 import "fmt"
 
-func getDateTimeCommit(date string) string {
-	return date
-}
-
-func getRandomCommitMessage(number int) string {
-	// randomize function
-	message := "title message"
-	return message
-}
-
 func runGitAdd() {
 	command := "git add ."
 	fmt.Println(command)
@@ -30,6 +20,7 @@ func runGitPush() {
 }
 
 func runCommands() {
+	writeChangesToFile(2)
 	runGitAdd()
 	runGitCommit()
 	runGitPush()
