@@ -11,7 +11,7 @@ func getNumber() int {
 	return globalAccumulator
 }
 
-func getDateTimeCommit(date string) string {
+func getDateTimeCommit() string {
 	dateTime := time.Now()
 	then := dateTime.Add(time.Duration(-24*globalAccumulator) * time.Hour)
 	return then.Format("2006-01-02T15:04:05-0700")

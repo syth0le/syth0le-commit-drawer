@@ -18,7 +18,7 @@ func runGitAdd() {
 }
 
 func runGitCommit(number int) {
-	dateTime := getDateTimeCommit("s")
+	dateTime := getDateTimeCommit()
 	message := getRandomCommitMessage(number)
 	command := "git commit -m " + message + " --date=" + dateTime
 	writeToLogFile(command)
