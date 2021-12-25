@@ -6,5 +6,6 @@ import (
 
 func main() {
 	data := getSizeOfContribution()
+	runCommands()
 	fmt.Println(data)
 }

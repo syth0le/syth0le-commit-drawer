@@ -1,8 +1,8 @@
 package main
 
 type ContributionTable struct {
-	days  int8 // 7
-	weeks int8 // 52 - 54
+	days  int // 7
+	weeks int // 52 - 54
 }
 
 func getSizeOfContribution() ContributionTable {
