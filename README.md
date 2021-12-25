@@ -1,4 +1,4 @@
 # syth0le-commit-drawer
 
-### this app allows draw something (picture, word, sentence, etc.) in GitHub Contributions table.
+### This app allows draw something (picture, word, sentence, etc.) in GitHub Contributions table.
 ###### Just change config file by your way, and run the code from main file.
