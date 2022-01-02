@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os/exec"
+	"strings"
 )
 
 func runGitStatus() {
@@ -41,13 +42,24 @@ func execute(command string) string {
 }
 
 func runCommands() {
-	for globalAccumulator < 10 {
-		number := getNumber()
-		writeChangesToFile(number)
-		runGitStatus()
-		runGitAdd()
-		runGitCommit(number)
-		runGitPush()
+	config := getSizeOfContribution()
+	table := strings.Split(config.table, "\n")[1:8]
+	for i := 0; i < len(table); i++ {
+		for j := 0; j < config.days; j++ {
+
+			// fmt.Println(j, i)
+			// fmt.Println(table[j])
+			symbol := table[j][i]
+			// fmt.Println(string(symbol))
+			number := getNumber()
+			if string(symbol) == "#" {
+				writeChangesToFile(number)
+				runGitStatus()
+				runGitAdd()
+				runGitCommit(number)
+				runGitPush()
+			}
+		}
 	}
 	cleanLogFile(false)
 }

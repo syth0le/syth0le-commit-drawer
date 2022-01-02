@@ -32,7 +32,7 @@ func writeToLogFile(message string) bool {
 }
 
 func cleanLogFile(isCleaned bool) bool {
-	if isCleaned == false {
+	if !isCleaned {
 		return isCleaned
 	}
 	file, err := os.OpenFile("log.txt", os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0644)
