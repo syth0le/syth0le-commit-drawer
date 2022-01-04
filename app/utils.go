@@ -11,7 +11,7 @@ func getNumber() int {
 }
 
 func getDateTimeCommit(config ContributionTable) string {
-	difference := config.wholeYear - globalAccumulator + 2
+	difference := config.wholeYear - globalAccumulator + daysOfWeekDifference
 	dateTime := time.Now()
 	then := dateTime.Add(time.Duration(-24*difference) * time.Hour)
 	return then.Format("2006-01-02T15:04:05-0700")

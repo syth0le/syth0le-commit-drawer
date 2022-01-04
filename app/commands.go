@@ -62,7 +62,7 @@ func runCommands(config ContributionTable) {
 			number := getNumber()
 
 			if string(symbol) == "#" {
-				for k := 0; k < 5; k++ {
+				for k := 0; k < commitNumbersPerDay; k++ {
 					numberToMessage := strconv.Itoa(number) + "-" + strconv.Itoa(k)
 					writeChangesToFile(numberToMessage)
 					runGitStatus()

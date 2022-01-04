@@ -1,8 +1,15 @@
 package main
 
+import (
+	"fmt"
+	"time"
+)
+
 var globalAccumulator int = 1
 var isWriteToLog bool = false
 var isCleanLogFile bool = false
+var commitNumbersPerDay = 5
+var daysOfWeekDifference = getDaysOfWeekDifference()
 
 type ContributionTable struct {
 	days      int // 7
@@ -32,4 +39,21 @@ func getSizeOfContribution() ContributionTable {
 	}
 
 	return contrTable
+}
+
+func getDaysOfWeekDifference() int {
+	daysOfWeek := map[string]int{
+		"Sunday":    0,
+		"Monday":    1,
+		"Tuesday":   2,
+		"Wednesday": 3,
+		"Thursday":  4,
+		"Friday":    5,
+		"Saturday":  6,
+	}
+	_ = daysOfWeek
+	day := time.Now().Weekday().String()
+	fmt.Printf("%s", day)
+	return daysOfWeek[day]
+
 }
