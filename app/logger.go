@@ -2,6 +2,7 @@ package main
 
 import (
 	"os"
+	"strings"
 	"time"
 )
 
@@ -10,24 +11,22 @@ func getCurrentDateTime() string {
 	return "[" + dateTime + "] - "
 }
 
-func writeToLogFile(message string) bool {
+func writeToLogFile(message ...string) bool {
 	isWrited := false
 	file, err := os.OpenFile("log.txt", os.O_APPEND|os.O_WRONLY, 0600)
 	if err != nil {
 		panic(err)
 	}
 
-	defer file.Close()
-
 	dateTime := getCurrentDateTime()
-	valueToWrite := dateTime + message + "\n"
+	valueToWrite := dateTime + "git " + strings.Join(message, " ") + "\n"
 
 	_, err = file.WriteString(valueToWrite)
 	if err != nil {
-		isWrited = true
 		panic(err)
 	}
-
+	file.Close()
+	isWrited = true
 	return isWrited
 }
 

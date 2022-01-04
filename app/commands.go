@@ -3,11 +3,12 @@ package main
 import (
 	"fmt"
 	"os/exec"
+	"strconv"
 	"strings"
 )
 
 func runGitStatus() {
-	command := "git status"
+	command := "status"
 	output := execute(command)
 	writeToLogFile(command)
 	_ = output
@@ -15,32 +16,34 @@ func runGitStatus() {
 }
 
 func runGitAdd() {
-	command := "git add ."
-	// execute(command)
-	writeToLogFile(command)
+	command := []string{"add", "."}
+	execute(command...)
+	writeToLogFile(command...)
 }
 
-func runGitCommit(number int) {
+func runGitCommit(number string) {
 	dateTime := getDateTimeCommit()
 	message := getRandomCommitMessage(number)
-	command := "git commit -m " + message + " --date=" + dateTime
-	// execute(command)
-	writeToLogFile(command)
+	command := []string{"commit", "-m", message, "--date", dateTime}
+	output := execute(command...)
+	writeToLogFile(command...)
+	writeToLogFile(output)
 }
 
 func runGitPush() {
-	command := "git push"
-	// execute(command)
+	command := "push"
+	execute(command)
 	writeToLogFile(command)
 }
 
-func execute(command string) string {
-	out, err := exec.Command("cmd", "/C", command).Output()
+func execute(command ...string) string {
+	out, err := exec.Command("git", command...).Output()
 	if err != nil {
-		fmt.Printf("%s", err)
+		fmt.Printf("%s - git %s\n", err, strings.Join(command, " "))
+	} else {
+		fmt.Printf("Command Successfully Executed - git %s\n", strings.Join(command, " "))
 	}
 
-	fmt.Println("Command Successfully Executed")
 	output := string(out[:])
 	return output
 }
@@ -51,11 +54,15 @@ func runCommands(config ContributionTable) {
 		for j := 0; j < config.days; j++ {
 			symbol := table[j][i]
 			number := getNumber()
+
 			if string(symbol) == "#" {
-				writeChangesToFile(number)
-				runGitStatus()
-				runGitAdd()
-				runGitCommit(number)
+				for k := 0; k < 30; k++ {
+					numberToMessage := strconv.Itoa(number) + "-" + strconv.Itoa(k)
+					writeChangesToFile(numberToMessage)
+					runGitStatus()
+					runGitAdd()
+					runGitCommit(numberToMessage)
+				}
 			}
 		}
 	}

@@ -2,7 +2,6 @@ package main
 
 import (
 	"os"
-	"strconv"
 	"time"
 )
 
@@ -19,28 +18,25 @@ func getDateTimeCommit() string {
 	return then.Format("2006-01-02T15:04:05-0700")
 }
 
-func getRandomCommitMessage(number int) string {
-	message := "title message #" + strconv.Itoa(number)
+func getRandomCommitMessage(number string) string {
+	message := "'" + "title message #" + number + "'"
 	return message
 }
 
-func writeChangesToFile(number int) bool {
+func writeChangesToFile(number string) bool {
 	isWrited := false
 	file, err := os.OpenFile("changeable_file.txt", os.O_APPEND|os.O_WRONLY, 0600)
 	if err != nil {
 		panic(err)
 	}
 
-	defer file.Close()
-
-	valueToWrite := "Hello" + strconv.Itoa(number) + "\n"
+	valueToWrite := "Hello" + number + "\n"
 
 	_, err = file.WriteString(valueToWrite)
 	if err != nil {
-		isWrited = true
 		panic(err)
 	}
 	file.Close()
-
+	isWrited = true
 	return isWrited
 }
