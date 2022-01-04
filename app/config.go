@@ -31,8 +31,6 @@ var table string = `
 ---##-#-#-###-###-##-#-#-###----#---###-###-#--#---
 `
 
-// или сделать вычисляемой исходя из дня ()
-// проверить на отрисовке сначала (не в гите а на пикче)
 func getSizeOfContribution() ContributionTable {
 	contrTable := ContributionTable{
 		days:      7,
@@ -58,5 +56,4 @@ func getDaysOfWeekDifference() int {
 	day := time.Now().Weekday().String()
 	fmt.Printf("%s", day)
 	return daysOfWeek[day]
-
 }
