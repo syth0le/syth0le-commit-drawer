@@ -44,22 +44,18 @@ func execute(command string) string {
 func runCommands() {
 	config := getSizeOfContribution()
 	table := strings.Split(config.table, "\n")[1:8]
-	for i := 0; i < len(table); i++ {
+	for i := 0; i < len(table[0]); i++ {
 		for j := 0; j < config.days; j++ {
-
-			// fmt.Println(j, i)
-			// fmt.Println(table[j])
 			symbol := table[j][i]
-			// fmt.Println(string(symbol))
 			number := getNumber()
 			if string(symbol) == "#" {
 				writeChangesToFile(number)
 				runGitStatus()
 				runGitAdd()
 				runGitCommit(number)
-				runGitPush()
 			}
 		}
 	}
+	runGitPush()
 	cleanLogFile(false)
 }
