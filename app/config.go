@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"time"
 )
 
@@ -54,6 +53,5 @@ func getDaysOfWeekDifference() int {
 	}
 	_ = daysOfWeek
 	day := time.Now().Weekday().String()
-	fmt.Printf("%s", day)
 	return daysOfWeek[day]
 }
