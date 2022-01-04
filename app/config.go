@@ -5,11 +5,14 @@ import (
 	"time"
 )
 
+// NOT CHANGEABLE
 var globalAccumulator int = 1
+var daysOfWeekDifference = getDaysOfWeekDifference()
+
+// CHANGEABLE
 var isWriteToLog bool = false
 var isCleanLogFile bool = false
 var commitNumbersPerDay = 5
-var daysOfWeekDifference = getDaysOfWeekDifference()
 
 type ContributionTable struct {
 	days      int // 7
