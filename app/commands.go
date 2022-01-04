@@ -40,7 +40,7 @@ func execute(command string) string {
 		fmt.Printf("%s", err)
 	}
 
-	// fmt.Println("Command Successfully Executed")
+	fmt.Println("Command Successfully Executed")
 	output := string(out[:])
 	return output
 }
