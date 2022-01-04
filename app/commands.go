@@ -10,9 +10,10 @@ import (
 func runGitStatus() {
 	command := "status"
 	output := execute(command)
-	writeToLogFile(command)
-	_ = output
-	// writeToLogFile(output)
+	if isWriteToLog {
+		writeToLogFile(command)
+		writeToLogFile(output)
+	}
 }
 
 func runGitAdd() {
@@ -21,19 +22,23 @@ func runGitAdd() {
 	writeToLogFile(command...)
 }
 
-func runGitCommit(number string) {
-	dateTime := getDateTimeCommit()
+func runGitCommit(number string, config ContributionTable) {
+	dateTime := getDateTimeCommit(config)
 	message := getRandomCommitMessage(number)
 	command := []string{"commit", "-m", message, "--date", dateTime}
 	output := execute(command...)
-	writeToLogFile(command...)
-	writeToLogFile(output)
+	if isWriteToLog {
+		writeToLogFile(command...)
+		writeToLogFile(output)
+	}
 }
 
 func runGitPush() {
 	command := "push"
 	execute(command)
-	writeToLogFile(command)
+	if isWriteToLog {
+		writeToLogFile(command)
+	}
 }
 
 func execute(command ...string) string {
@@ -50,6 +55,7 @@ func execute(command ...string) string {
 
 func runCommands(config ContributionTable) {
 	table := strings.Split(config.table, "\n")[1:8]
+	//TODO: refactor this
 	for i := 0; i < len(table[0]); i++ {
 		for j := 0; j < config.days; j++ {
 			symbol := table[j][i]
@@ -61,11 +67,11 @@ func runCommands(config ContributionTable) {
 					writeChangesToFile(numberToMessage)
 					runGitStatus()
 					runGitAdd()
-					runGitCommit(numberToMessage)
+					runGitCommit(numberToMessage, config)
 				}
 			}
 		}
 	}
 	runGitPush()
-	cleanLogFile(false)
+	cleanLogFile()
 }

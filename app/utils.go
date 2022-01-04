@@ -10,8 +10,7 @@ func getNumber() int {
 	return globalAccumulator
 }
 
-func getDateTimeCommit() string {
-	config := getSizeOfContribution()
+func getDateTimeCommit(config ContributionTable) string {
 	difference := config.wholeYear - globalAccumulator + 2
 	dateTime := time.Now()
 	then := dateTime.Add(time.Duration(-24*difference) * time.Hour)
@@ -24,7 +23,6 @@ func getRandomCommitMessage(number string) string {
 }
 
 func writeChangesToFile(number string) bool {
-	isWrited := false
 	file, err := os.OpenFile("changeable_file.txt", os.O_APPEND|os.O_WRONLY, 0600)
 	if err != nil {
 		panic(err)
@@ -37,6 +35,5 @@ func writeChangesToFile(number string) bool {
 		panic(err)
 	}
 	file.Close()
-	isWrited = true
-	return isWrited
+	return true
 }

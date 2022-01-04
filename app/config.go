@@ -1,6 +1,8 @@
 package main
 
 var globalAccumulator int = 1
+var isWriteToLog bool = false
+var isCleanLogFile bool = false
 
 type ContributionTable struct {
 	days      int // 7

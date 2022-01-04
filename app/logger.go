@@ -12,7 +12,6 @@ func getCurrentDateTime() string {
 }
 
 func writeToLogFile(message ...string) bool {
-	isWrited := false
 	file, err := os.OpenFile("log.txt", os.O_APPEND|os.O_WRONLY, 0600)
 	if err != nil {
 		panic(err)
@@ -26,13 +25,12 @@ func writeToLogFile(message ...string) bool {
 		panic(err)
 	}
 	file.Close()
-	isWrited = true
-	return isWrited
+	return true
 }
 
-func cleanLogFile(isCleaned bool) bool {
-	if !isCleaned {
-		return isCleaned
+func cleanLogFile() bool {
+	if !isCleanLogFile {
+		return isCleanLogFile
 	}
 	file, err := os.OpenFile("log.txt", os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0644)
 	if err != nil {
@@ -43,9 +41,7 @@ func cleanLogFile(isCleaned bool) bool {
 
 	_, err = file.WriteString("")
 	if err != nil {
-		isCleaned = true
 		panic(err)
 	}
-
-	return isCleaned
+	return isCleanLogFile
 }
