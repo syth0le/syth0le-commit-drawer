@@ -9,4 +9,4 @@ go run ./app
 ```
 
 |example|
-|<img src="https://raw.githubusercontent.com/syth0le/syth0le-commit-drawer/main/app/example/example.png" alt="create"/>|
+|<img src="https://raw.githubusercontent.com/syth0le/syth0le-commit-drawer/main/example/example.png" alt="example"/>|
