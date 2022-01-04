@@ -19,7 +19,9 @@ func runGitStatus() {
 func runGitAdd() {
 	command := []string{"add", "."}
 	execute(command...)
-	writeToLogFile(command...)
+	if isWriteToLog {
+		writeToLogFile(command...)
+	}
 }
 
 func runGitCommit(number string, config ContributionTable) {
