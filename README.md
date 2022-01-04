@@ -8,5 +8,5 @@ run this command to get programm result (draw something from config file)
 go run ./app
 ```
 
-|example|
-|<img src="https://raw.githubusercontent.com/syth0le/syth0le-commit-drawer/main/example/example.png" alt="example"/>|
+example:
+<img src="https://raw.githubusercontent.com/syth0le/syth0le-commit-drawer/main/example/example.png" alt="example"/>
