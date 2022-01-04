@@ -25,7 +25,7 @@ func getSizeOfContribution() ContributionTable {
 	contrTable := ContributionTable{
 		days:      7,
 		weeks:     53,
-		wholeYear: 365,
+		wholeYear: 366,
 		table:     table,
 	}
 

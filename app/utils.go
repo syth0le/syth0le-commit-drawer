@@ -12,10 +12,9 @@ func getNumber() int {
 
 func getDateTimeCommit() string {
 	config := getSizeOfContribution()
-	// difference := config.wholeYear - globalAccumulator
+	difference := config.wholeYear - globalAccumulator + 1
 	dateTime := time.Now()
-	// then := dateTime.Add(time.Duration(-24*difference) * time.Hour)
-	then := dateTime.Add(time.Duration(-24*config.wholeYear) * time.Hour).Add(time.Duration(24*globalAccumulator) * time.Hour)
+	then := dateTime.Add(time.Duration(-24*difference) * time.Hour)
 	return then.Format("2006-01-02T15:04:05-0700")
 }
 
